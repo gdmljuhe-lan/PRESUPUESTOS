@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>ANALÍTICOS GDML</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/style-aqua.css" />
+
+    <style>
+        * { font-family:"Avenir Next LT Pro Light", "Helvetica Neue", Arial, sans-serif; font-size:12px; text-transform:uppercase; }
+        body { background:#fff; color:#000; }
+        .container { max-width:1200px; margin-top:30px; }
+        table { width:100%; border-collapse:collapse; margin-top:12px; font-size:10px; }
+        th, td { border:1px solid #ddd; padding:6px; text-align:center; vertical-align:middle; }
+        th { background:#e9ecef; font-weight:bold; }
+        .btn-back { background:#007bff; color:#fff; border:none; padding:4px 6px; border-radius:6px; cursor:pointer; font-size:6.5px; }
+        .btn-aqua { background:linear-gradient(90deg,#00b4d8,#0077b6); color:#fff; border:none; padding:4px 6px; border-radius:8px; cursor:pointer; font-size:6.5px; }
+        .btn-delete-all { background:#dc3545; color:#fff; border:none; padding:4px 6px; border-radius:4px; cursor:pointer; font-size:6.5px; margin-right:5px; }
+        .btn-delete-selected { background:#ff6b6b; color:#fff; border:none; padding:4px 6px; border-radius:4px; cursor:pointer; font-size:6.5px; margin-right:5px; }
+        .btn-hide { background:linear-gradient(90deg,#00b4d8,#0077b6); color:#fff; border:none; padding:4px 6px; border-radius:4px; cursor:pointer; font-size:6.5px; margin-right:5px; }
+        .select-categoria { width:100%; max-width:360px; padding:6px; border-radius:6px; border:1px solid #ccc; }
+        .action-select { font-size:6.5px; padding:2px; border-radius:4px; width:100px; }
+        .action-select option[value="editar"] { background:#ffc107; color:#000; }
+        .action-select option[value="eliminar"] { background:#dc3545; color:#fff; }
+        .action-select option[value="duplicar"] { background:#00b4d8; color:#fff; }
+        .center { text-align:center; }
+        .mt-4 { margin-top:1rem; }
+        .mb-3 { margin-bottom:.75rem; }
+        .item-image { max-width:100px; height:auto; }
+        .categoria-header {
+            background:#dfefff;
+            font-weight:bold;
+            text-align:left;
+            padding:8px;
+            border:2px solid #0077b6;
+            color:#0077b6;
+        }
+        .utilidad-input { width:60px; text-align:center; font-weight:bold; }
+        .pieza-name { position: relative; cursor: pointer; }
+        .pieza-name:hover .pieza-tooltip { display: block; }
+        .pieza-tooltip {
+            display: none;
+            position: absolute;
+            background: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            z-index: 10;
+        }
+        .category-action-row { background:#f8f9fa; }
+        .category-action-row td { padding:10px; text-align:right; }
+        .hidden-row { display: none; }
+        @media (max-width:768px) { .select-categoria { width:100%; } }
+    </style>
+</head>
+<body class="sub_page">
+    <div class="hero_area">
+        <header class="header_section">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+                    <a class="navbar-brand" href="iniciogdml.html">
+                        <img src="images/logo.png" alt="LOGO" style="max-height:34px;">
+                        <span>ANALÍTICO DE MOBILIARIO</span>
+                    </a>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <section class="about_section layout_padding">
+        <div class="container">
+            <h3 class="text-center mb-3">ANÁLISIS DETALLADO DE LA PIEZA</h3>
+            <p>
+                <strong>PROYECTO:</strong> <span id="projectName"></span> |
+                <strong>MARCA:</strong> <span id="brandName"></span> |
+                <strong>AÑO:</strong> <span id="yearName"></span> |
+                <strong>CLAVE:</strong> <span id="claveName"></span>
+            </p>
+
+            <table id="detalleTable">
+                <thead>
+                    <tr>
+                        <th>NO.</th><th>IMAGEN</th><th>CLAVE</th><th>DESCRIPCIÓN</th><th>UNIDAD</th>
+                        <th>CANTIDAD</th><th>P.U.</th><th>SUBTOTAL</th><th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <div class="mt-4 center">
+                <button class="btn-back mb-3" onclick="goBack()">VOLVER AL CATÁLOGO</button>
+
+                <!-- TABLA DE RESUMEN POR CATEGORÍA -->
+                <table id="resumenCategorias" style="width:100%; border-collapse:collapse; margin-bottom:12px;">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+
+                <h4 class="mb-3">DESPIECE</h4>
+
+                <select id="categoriaDespiece" class="select-categoria mb-3">
+                    <option value="">SELECCIONAR CATEGORÍA</option>
+                    <option>BARNIZ</option>
+                    <option>PINTURA</option>
+                    <option>METAL</option>
+                    <option>MADERA</option>
+                    <option>MARMOL</option>
+                    <option>HERRAJE</option>
+                    <option>ELÉCTRICO</option>
+                    <option>ACRÍLICO</option>
+                    <option>ESPEJO</option>
+                    <option>VIDRIO</option>
+                    <option>GRAFICOS</option>
+                    <option>VINIL ADHERIBLE</option>
+                    <option>BACKLIGH</option>
+                    <option>TELA/VINIPIEL</option>
+                    <option>EMBALAJE</option>
+                    <option>MANO DE OBRA</option>
+                    <option>CORTE LASER</option>
+                    <option>EXTERNOS</option>
+                    <option>INSUMOS</option>
+                </select>
+            </div>
+
+            <table id="despieceTable">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="selectAll"></th>
+                        <th>NO.</th><th>PIEZA</th><th>CLAVE</th><th>DESCRIPCIÓN</th><th>UNIDAD</th>
+                        <th>CANTIDAD</th><th>P.U.</th><th>SUBTOTAL</th><th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="10" class="text-muted">NO SE HAN REGISTRADO PIEZAS EN EL DESPIECE.</td></tr>
+                </tbody>
+            </table>
+
+            <div class="center mt-4">
+                <button id="openBarnizBtn" class="btn-aqua mr-2">BARNIZ</button>
+                <button id="openPinturaBtn" class="btn-aqua mr-2">PINTURA</button>
+                <button id="openMetalBtn" class="btn-aqua mr-2">METAL</button>
+                <button id="openMaderaBtn" class="btn-aqua">MADERA</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFORMACION DE CONTACTO -->
+    <section class="info_section layout_padding2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="info_contact">
+                        <h4>ANALISTAS</h4>
+                        <div class="box">
+                            <div class="img-box"></div>
+                            <div class="detail-box"><h6>ANALISTA 1</h6></div>
+                        </div>
+                        <div class="box">
+                            <div class="img-box"></div>
+                            <div class="detail-box"><h6>ANALISTA 2</h6></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info_menu">
+                        <h4>Menu</h4>
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="iniciogdml.html">INICIO <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="marcasgdml.html">MARCAS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="galeriagdml.html">GALERIA</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="acumuladogdml.html">ACUMULADO</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info_news"><h4>PRESUPUESTOS MOBILIARIO</h4></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCION PIE DE PAGINA -->
+    <section class="container-fluid footer_section">
+        <p>&copy; 2025 Design by <a href="https://INSTAGRAM.COM/GADMIEL__">gdml</a></p>
+    </section>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const brandName = urlParams.get('brand') || 'DESCONOCIDA';
+        const yearName  = urlParams.get('year')  || 'DESCONOCIDO';
+        const projectName = urlParams.get('project') || 'DESCONOCIDO';
+        const clave = urlParams.get('clave') || 'N/A';
+
+        document.getElementById('brandName').textContent = brandName.toUpperCase();
+        document.getElementById('yearName').textContent = yearName.toUpperCase();
+        document.getElementById('projectName').textContent = projectName.toUpperCase();
+        document.getElementById('claveName').textContent = clave.toUpperCase();
+
+        const despieceStorageKey = `despiece_${brandName}_${yearName}_${projectName}_${clave}`;
+        const storageKeyCatalog = `catalog_${brandName}_${yearName}_${projectName}`;
+        const catalogItems = JSON.parse(localStorage.getItem(storageKeyCatalog) || '[]');
+        const item = catalogItems.find(i => i.clave === clave);
+        const despieceTBody = document.querySelector('#despieceTable tbody');
+        let despieceList = [];
+        let newlyShownIndices = new Set(); // Track indices of rows that were hidden and are now shown
+
+        const ordenCategorias = [
+            "BARNIZ","PINTURA","METAL","MADERA","MARMOL","HERRAJE","ELÉCTRICO","ACRÍLICO",
+            "ESPEJO","VIDRIO","GRAFICOS","VINIL ADHERIBLE","BACKLIGH","TELA/VINIPIEL",
+            "EMBALAJE","MANO DE OBRA","CORTE LASER","EXTERNOS","INSUMOS"
+        ];
+
+        function renderMainItem(it) {
+            const tbody = document.querySelector('#detalleTable tbody');
+            tbody.innerHTML = '';
+            if (!it) {
+                tbody.innerHTML = '<tr><td colspan="9">NO SE ENCONTRÓ INFORMACIÓN PARA LA CLAVE SELECCIONADA.</td></tr>';
+                return;
+            }
+            const subtotal = (Number(it.pu) * Number(it.cantidad)).toFixed(2);
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>1</td>
+                <td><img src="${it.imagen || 'https://via.placeholder.com/100?text=IMAGEN'}" class="item-image"></td>
+                <td>${it.clave}</td>
+                <td>${it.descripcion}</td>
+                <td>${it.unidad}</td>
+                <td>${it.cantidad}</td>
+                <td>$${Number(it.pu).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                <td>$${Number(subtotal).toLocaleString('en-US', { minimumFractionDigits: 2 })}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm" onclick="alert('Edición no implementada')">EDITAR</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteMain('${it.clave}')">ELIMINAR</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        function deleteMain(claveToDelete) {
+            if (!confirm('¿DESEAS ELIMINAR ESTA PIEZA DEL CATÁLOGO?')) return;
+            let list = JSON.parse(localStorage.getItem(storageKeyCatalog) || '[]');
+            list = list.filter(i => i.clave !== claveToDelete);
+            localStorage.setItem(storageKeyCatalog, JSON.stringify(list));
+            alert('ELEMENTO ELIMINADO CORRECTAMENTE.');
+            window.location.href = `catalogo.html?brand=${encodeURIComponent(brandName)}&year=${encodeURIComponent(yearName)}&project=${encodeURIComponent(projectName)}`;
+        }
+
+        function updateDespieceStorageAndRender(list) {
+            localStorage.setItem(despieceStorageKey, JSON.stringify(list));
+            despieceList = list;
+            renderDespiece(list);
+            actualizarResumenCategorias();
+        }
+
+        function editDespieceItem(itemToEdit) {
+            const raw = (itemToEdit.categoria || '').trim();
+            if (!raw) { alert('Categoría no definida para edición.'); return; }
+            const normalized = raw.replace(/\s+/g,'').replace(/\//g,'').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+            const funcName = 'mostrarFormulario' + normalized.charAt(0).toUpperCase() + normalized.slice(1).toLowerCase();
+            if(typeof window[funcName] === 'function'){
+                try{window[funcName](itemToEdit);}catch(err){alert('Error al abrir el formulario de '+raw);}
+            }else{alert('Formulario para "'+raw+'" no disponible.');}
+        }
+
+        function deleteCategoryItems(categoria) {
+            if (!confirm(`¿Eliminar todas las filas de la categoría ${categoria}?`)) return;
+            despieceList = despieceList.filter(it => (it.categoria || '').toUpperCase() !== categoria.toUpperCase());
+            newlyShownIndices.clear(); // Clear selection since category is deleted
+            updateDespieceStorageAndRender(despieceList);
+            alert(`Todas las filas de ${categoria} eliminadas correctamente.`);
+        }
+
+        function deleteSelectedItems(categoria) {
+            const checkboxes = document.querySelectorAll(`#despieceTable input[data-categoria="${categoria}"]:checked`);
+            if (checkboxes.length === 0) {
+                alert('Por favor, selecciona al menos una fila para eliminar.');
+                return;
+            }
+            if (!confirm(`¿Eliminar ${checkboxes.length} fila(s) seleccionada(s) de la categoría ${categoria}?`)) return;
+            const indicesToDelete = Array.from(checkboxes).map(cb => Number(cb.dataset.index));
+            despieceList = despieceList.filter((_, idx) => !indicesToDelete.includes(idx));
+            newlyShownIndices.clear(); // Clear selection since items are deleted
+            updateDespieceStorageAndRender(despieceList);
+            alert('Filas seleccionadas eliminadas correctamente.');
+        }
+
+        function duplicateItem(index) {
+            if (!confirm('¿Duplicar esta fila?')) return;
+            const itemToDuplicate = despieceList[index];
+            if (!itemToDuplicate) {
+                alert('Error: No se encontró la fila para duplicar.');
+                return;
+            }
+            const duplicatedItem = { ...itemToDuplicate, hidden: false };
+            despieceList.push(duplicatedItem);
+            updateDespieceStorageAndRender(despieceList);
+            alert('Fila duplicada correctamente.');
+        }
+
+        function toggleSelectedRowsVisibility(categoria) {
+            const button = document.querySelector(`#despieceTable button[data-categoria="${categoria}"].btn-hide`);
+            if (button.textContent === 'MOSTRAR') {
+                // Show all hidden items in the category and track them for selection
+                newlyShownIndices.clear(); // Clear previous selections
+                despieceList.forEach((item, idx) => {
+                    if ((item.categoria || '').toUpperCase() === categoria.toUpperCase() && item.hidden) {
+                        newlyShownIndices.add(idx);
+                    }
+                });
+                despieceList = despieceList.map(item => 
+                    (item.categoria || '').toUpperCase() === categoria.toUpperCase() 
+                        ? { ...item, hidden: false } 
+                        : item
+                );
+            } else {
+                // Hide only selected items
+                const checkboxes = document.querySelectorAll(`#despieceTable input[data-categoria="${categoria}"]:checked`);
+                if (checkboxes.length === 0) {
+                    alert('Por favor, selecciona al menos una fila para ocultar.');
+                    return;
+                }
+                newlyShownIndices.clear(); // Clear selections when hiding
+                const indices = Array.from(checkboxes).map(cb => Number(cb.dataset.index));
+                despieceList = despieceList.map((item, idx) => 
+                    indices.includes(idx) ? { ...item, hidden: true } : item
+                );
+            }
+            updateDespieceStorageAndRender(despieceList);
+        }
+
+        function renderDespiece(list) {
+            despieceTBody.innerHTML = '';
+            if (!Array.isArray(list) || list.length === 0) {
+                despieceTBody.innerHTML = '<tr><td colspan="10" class="text-muted">NO SE HAN REGISTRADO PIEZAS EN EL DESPIECE.</td></tr>';
+                return;
+            }
+            ordenCategorias.forEach(categoria => {
+                const itemsCat = list.filter(it => (it.categoria || '').toUpperCase() === categoria.toUpperCase());
+                if (itemsCat.length > 0) {
+                    const headerRow = document.createElement('tr');
+                    const headerCell = document.createElement('td');
+                    headerCell.colSpan = 10;
+                    headerCell.className = 'categoria-header';
+                    headerCell.textContent = categoria;
+                    headerRow.appendChild(headerCell);
+                    despieceTBody.appendChild(headerRow);
+
+                    const visibleItems = itemsCat.filter(it => !it.hidden);
+                    visibleItems.forEach((it, idx) => {
+                        const originalIndex = list.findIndex(x => x.categoria === it.categoria && x.descripcion === it.descripcion && x.cantidad === it.cantidad && x.hidden === it.hidden);
+                        if (originalIndex === -1) return;
+                        const itemWithIndex = { ...it, __tempIndex: originalIndex };
+                        const tr = document.createElement('tr');
+                        const dimensions = it.ancho ? `${it.largo}mm x ${it.ancho}mm` : `${it.largo}mm`;
+                        const isNewlyShown = newlyShownIndices.has(originalIndex);
+                        tr.innerHTML = `
+                            <td><input type="checkbox" data-index="${originalIndex}" data-categoria="${categoria}" ${isNewlyShown ? 'checked' : ''}></td>
+                            <td>${idx + 1}</td>
+                            <td class="pieza-name">
+                                ${it.nombrePieza || '-'}
+                                <span class="pieza-tooltip">${dimensions}</span>
+                            </td>
+                            <td>${it.clave || '-'}</td>
+                            <td>${it.descripcion}</td>
+                            <td>${it.unidad}</td>
+                            <td>${it.cantidad}</td>
+                            <td>$${Number(it.pu).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                            <td>$${Number(it.subtotal).toFixed(2)}</td>
+                            <td>
+                                <select class="action-select" data-index="${originalIndex}">
+                                    <option value="">SELECCIONE ACCIÓN</option>
+                                    <option value="editar">EDITAR</option>
+                                    <option value="eliminar">ELIMINAR</option>
+                                    <option value="duplicar">DUPLICAR</option>
+                                </select>
+                            </td>
+                        `;
+                        despieceTBody.appendChild(tr);
+                        tr.querySelector('.action-select').addEventListener('change', (e) => {
+                            const action = e.target.value;
+                            const index = Number(e.target.dataset.index);
+                            if (action === 'editar') {
+                                editDespieceItem(itemWithIndex);
+                            } else if (action === 'eliminar') {
+                                if (!confirm('Eliminar esta fila?')) return;
+                                if (index >= 0 && index < despieceList.length) {
+                                    despieceList.splice(index, 1);
+                                    newlyShownIndices.delete(index); // Remove from selection
+                                }
+                                updateDespieceStorageAndRender(despieceList);
+                            } else if (action === 'duplicar') {
+                                duplicateItem(index);
+                            }
+                            e.target.value = ''; // Reset dropdown
+                        });
+                    });
+
+                    // Add action row with buttons
+                    const actionRow = document.createElement('tr');
+                    actionRow.className = 'category-action-row';
+                    const actionCell = document.createElement('td');
+                    actionCell.colSpan = 10;
+                    const hasHiddenItems = itemsCat.some(it => it.hidden);
+                    actionCell.innerHTML = `
+                        <button class="btn-hide" data-categoria="${categoria}">${hasHiddenItems ? 'MOSTRAR' : 'OCULTAR'}</button>
+                        <button class="btn-delete-all" onclick="deleteCategoryItems('${categoria}')">ELIMINAR TODO</button>
+                        <button class="btn-delete-selected" onclick="deleteSelectedItems('${categoria}')">ELIMINAR VARIOS</button>
+                    `;
+                    actionRow.appendChild(actionCell);
+                    despieceTBody.appendChild(actionRow);
+                    actionRow.querySelector('.btn-hide').addEventListener('click', () => toggleSelectedRowsVisibility(categoria));
+                }
+            });
+
+            // Add select all checkbox functionality (only for visible rows)
+            document.getElementById('selectAll').addEventListener('change', function() {
+                const checkboxes = document.querySelectorAll('#despieceTable input[type="checkbox"]:not(#selectAll)');
+                checkboxes.forEach(cb => {
+                    const row = cb.closest('tr');
+                    if (!row.classList.contains('hidden-row')) {
+                        cb.checked = this.checked;
+                    }
+                });
+            });
+
+            // Clear newlyShownIndices after rendering to prevent persistent selection
+            newlyShownIndices.clear();
+        }
+
+        function agregarFilaDespiece(data) {
+            despieceList.push({ ...data, hidden: false });
+            updateDespieceStorageAndRender(despieceList);
+            alert('Elemento añadido correctamente.');
+        }
+
+        function loadDespieceOnStart() {
+            const saved = JSON.parse(localStorage.getItem(despieceStorageKey) || '[]');
+            despieceList = saved.map(item => ({ ...item, hidden: item.hidden ?? false }));
+            renderDespiece(despieceList);
+            actualizarResumenCategorias();
+        }
+
+        function actualizarResumenCategorias() {
+            const table = document.querySelector('#resumenCategorias');
+            const thead = table.querySelector('thead');
+            const tbody = table.querySelector('tbody');
+            thead.innerHTML = '';
+            tbody.innerHTML = '';
+
+            const categoriasConValor = ordenCategorias.filter(cat => {
+                const total = despieceList.filter(i => (i.categoria || '').toUpperCase() === cat && !i.hidden)
+                    .reduce((sum, i) => sum + (Number(i.subtotal) || 0), 0);
+                return total > 0;
+            });
+
+            if (categoriasConValor.length === 0) {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.colSpan = ordenCategorias.length + 3;
+                td.textContent = 'No hay datos para mostrar';
+                td.className = 'text-muted';
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+                return;
+            }
+
+            const trHead = document.createElement('tr');
+            categoriasConValor.forEach(cat => {
+                const th = document.createElement('th');
+                th.textContent = cat;
+                trHead.appendChild(th);
+            });
+            ['UTILIDAD 1', 'UTILIDAD 2', 'UTILIDAD 3'].forEach(uti => {
+                const th = document.createElement('th');
+                th.textContent = uti;
+                trHead.appendChild(th);
+            });
+            thead.appendChild(trHead);
+
+            const trBody = document.createElement('tr');
+            categoriasConValor.forEach(cat => {
+                const total = despieceList.filter(i => (i.categoria || '').toUpperCase() === cat && !i.hidden)
+                    .reduce((sum, i) => sum + (Number(i.subtotal) || 0), 0);
+                const td = document.createElement('td');
+                td.textContent = `$${total.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+                trBody.appendChild(td);
+            });
+
+            const sumaSubtotales = despieceList.filter(i => !i.hidden)
+                .reduce((sum, i) => sum + (Number(i.subtotal) || 0), 0);
+            const utilidadesDefault = [35, 55, 75];
+
+            utilidadesDefault.forEach((porcentaje, idx) => {
+                const td = document.createElement('td');
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.min = 0;
+                input.max = 100;
+                input.step = 1;
+                input.value = porcentaje;
+                input.className = 'utilidad-input';
+
+                const span = document.createElement('span');
+                span.style.marginLeft = '5px';
+                span.textContent = `$${(sumaSubtotales * porcentaje / 100).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+
+                input.addEventListener('input', () => {
+                    let val = Number(input.value) || 0;
+                    if (val < 0) val = 0;
+                    if (val > 100) val = 100;
+                    input.value = val;
+                    span.textContent = `$${(sumaSubtotales * val / 100).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+                });
+
+                td.appendChild(input);
+                td.appendChild(span);
+                trBody.appendChild(td);
+            });
+
+            tbody.appendChild(trBody);
+        }
+
+        function goBack() {
+            window.location.href = `catalogo.html?brand=${encodeURIComponent(brandName)}&year=${encodeURIComponent(yearName)}&project=${encodeURIComponent(projectName)}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMainItem(item);
+            loadDespieceOnStart();
+
+            document.getElementById('openPinturaBtn').addEventListener('click', () => typeof mostrarFormularioPintura === 'function' && mostrarFormularioPintura());
+            document.getElementById('openBarnizBtn').addEventListener('click', () => typeof mostrarFormularioBarniz === 'function' && mostrarFormularioBarniz());
+            document.getElementById('openMetalBtn').addEventListener('click', () => typeof mostrarFormularioMetal === 'function' && mostrarFormularioMetal());
+            document.getElementById('openMaderaBtn').addEventListener('click', () => typeof mostrarFormularioMadera === 'function' && mostrarFormularioMadera());
+
+            document.getElementById('categoriaDespiece').addEventListener('change', function() {
+                const raw = (this.value || '').trim();
+                if (!raw) return;
+                const normalized = raw.replace(/\s+/g, '').replace(/\//g, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                const funcName = 'mostrarFormulario' + normalized.charAt(0) + normalized.slice(1).toLowerCase();
+                if (typeof window[funcName] === 'function') {
+                    try { window[funcName](); } catch (err) { console.error(err); }
+                } else {
+                    alert('Formulario para "' + raw + '" no disponible.');
+                }
+                this.value = '';
+            });
+        });
+    </script>
+
+    <script src="formularios/formulariopintura.js"></script>
+    <script src="formularios/formulariobarniz.js"></script>
+    <script src="formularios/formularioMetal.js"></script>
+    <script src="formularios/formularioMadera.js"></script>
+    <script src="formularios/formularioMarmol.js"></script>
+    <script src="formularios/formularioHerraje.js"></script>
+    <script src="formularios/formularioElectrico.js"></script>
+    <script src="formularios/formularioAcrilico.js"></script>
+    <script src="formularios/formularioEspejo.js"></script>
+    <script src="formularios/formularioVidrio.js"></script>
+    <script src="formularios/formularioGraficos.js"></script>
+    <script src="formularios/formularioVinilAdherible.js"></script>
+    <script src="formularios/formularioBackligh.js"></script>
+    <script src="formularios/formularioTelaVinipiel.js"></script>
+    <script src="formularios/formularioEmbalaje.js"></script>
+    <script src="formularios/formularioInsumos.js"></script>
+    <script src="formularios/formularioManoobra.js"></script>
+    <script src="formularios/formularioCorteLaser.js"></script>
+    <script src="formularios/formularioExternos.js"></script>
+</body>
+</html>

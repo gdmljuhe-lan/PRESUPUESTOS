@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>PROYECTOS</title>
+  <!-- font awesome style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700|Roboto:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <!-- Custom CSS for table styling -->
+  <style>
+    #projectsTable th,
+    #projectsTable td {
+      text-align: center;
+      text-transform: uppercase;
+      padding: 15px; /* Increased padding for wider cells */
+    }
+    #projectsTable th {
+      min-width: 120px; /* Minimum width for headers */
+    }
+    #projectsTable td {
+      min-width: 150px; /* Wider cells for content */
+    }
+    #projectsTable .btn {
+      text-transform: uppercase; /* Uppercase button text */
+    }
+    #projectsTable .actions-cell {
+      display: flex;
+      justify-content: center;
+      gap: 10px; /* Space between buttons */
+    }
+    #projectsTable th.month-header {
+      background-color: #f8f9fa; /* Light background for month headers */
+      font-weight: bold;
+    }
+    #projectsTable .project-link {
+      color: #000000; /* Set to black */
+      text-decoration: none;
+      cursor: pointer;
+      background: none; /* Prevent any background */
+      outline: none; /* Prevent outline */
+      border: none; /* Prevent border */
+    }
+    #projectsTable .project-link:hover {
+      text-decoration: underline; /* Underline on hover */
+    }
+    #projectsTable .project-link:focus,
+    #projectsTable .project-link:active {
+      outline: none; /* Prevent focus outline */
+      box-shadow: none; /* Prevent focus shadow */
+    }
+  </style>
+</head>
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section starts -->
+    <header class="header_section">
+      <div class="container">
+        <div class="top_contact-container">
+          <div class="tel_container">
+            <a href="">
+              PRESUPUESTOS MOBILIARIO
+            </a>
+          </div>
+          <div class="social-container">
+            <a href="">
+              <img src="images/fb.png" alt="Facebook" class="s-1" onerror="this.src='https://via.placeholder.com/30?text=FB'">
+            </a>
+            <a href="">
+              <img src="images/twitter.png" alt="Twitter" class="s-2" onerror="this.src='https://via.placeholder.com/30?text=TW'">
+            </a>
+            <a href="">
+              <img src="images/instagram.png" alt="Instagram" class="s-3" onerror="this.src='https://via.placeholder.com/30?text=IG'">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="iniciogdml.html">
+            <img src="images/logo.png" alt="Logo" onerror="this.src='https://via.placeholder.com/50?text=Logo'">
+            <span>
+              PRESUPUESTOS
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex flex-column flex-lg-row align-items-center w-100 justify-content-between">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="iniciogdml.html">INICIO <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="marcasgdml.html"> MARCAS </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="galeriagdml.html"> GALERIA </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="acumuladogdml.html"> ACUMULADO </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="news.html"> News </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact us</a>
+                </li>
+              </ul>
+              <form class="form-inline">
+                <input type="search" placeholder="Search">
+                <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+              <div class="login_btn-contanier ml-0 ml-lg-5">
+                <a href="">
+                  <img src="images/user.png" alt="User" onerror="this.src='https://via.placeholder.com/30?text=User'">
+                  <span>
+                    Login
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+  <!-- INICIA LISTADO DE PROYECTOS -->
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="custom_heading-container">
+        <h2>
+          LISTADO DE PROYECTOS
+        </h2>
+      </div>
+      <div class="detail-box">
+        <p>
+          AQUÍ PODRÁS ENCONTRAR EL LISTADO DE PROYECTOS PARA LA MARCA: <span id="brandName"></span> Y AÑO: <span id="yearName"></span>
+        </p>
+        <!-- Formulario para agregar nuevo proyecto -->
+        <div class="mb-4">
+          <h3>AGREGAR NUEVO PROYECTO</h3>
+          <form id="addProjectForm">
+            <div class="form-group">
+              <label for="projectInput">PROYECTO:</label>
+              <input type="text" class="form-control" id="projectInput" required>
+            </div>
+            <div class="form-group">
+              <label for="dateInput">FECHA:</label>
+              <input type="date" class="form-control" id="dateInput" required>
+            </div>
+            <div class="form-group">
+              <label for="orderInput">NÚMERO DE ORDEN:</label>
+              <input type="text" class="form-control" id="orderInput">
+            </div>
+            <button type="submit" class="btn btn-primary">AGREGAR</button>
+          </form>
+        </div>
+        <!-- Tabla de proyectos -->
+        <table class="table table-striped" id="projectsTable">
+          <thead>
+            <tr>
+              <th>NÚMERO</th>
+              <th>PROYECTO</th>
+              <th>FECHA</th>
+              <th>NÚMERO DE ORDEN</th>
+              <th>ACCIONES</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filas se agregarán dinámicamente aquí -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <!-- INFORMACION DE CONTACTO -->
+  <section class="info_section layout_padding2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_contact">
+            <h4>
+              ANALISTAS
+            </h4>
+            <div class="box">
+              <div class="img-box"></div>
+              <div class="detail-box">
+                <h6>
+                  ANALISTA 1
+                </h6>
+              </div>
+            </div>
+            <div class="box">
+              <div class="img-box"></div>
+              <div class="detail-box">
+                <h6>
+                  ANALISTA 2
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_menu">
+            <h4>
+              Menu
+            </h4>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="iniciogdml.html">INICIO <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="marcasgdml.html"> MARCAS </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="galeriagdml.html"> GALERIA </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="acumuladogdml.html"> ACUMULADO </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info_news">
+            <h4>
+              PRESUPUESTOS MOBILIARIO
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- FIN DE SECCION INFO -->
+  <!-- SECCION PIE DE PAGINA -->
+  <section class="container-fluid footer_section">
+    <p>
+      &copy; 2025 Design by
+      <a href="https://INSTAGRAM.COM/GADMIEL__">gdml</a>
+    </p>
+  </section>
+  <!-- SECCION FIN PIE DE PAGINA -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- JavaScript para manejar el listado de proyectos -->
+  <script type="text/javascript">
+    // Obtener el nombre de la marca y el año desde la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const brandName = urlParams.get('brand') || 'Desconocida';
+    const year = urlParams.get('year') || 'Desconocido';
+    document.getElementById('brandName').textContent = brandName.toUpperCase();
+    document.getElementById('yearName').textContent = year.toUpperCase();
+    // Función para validar fecha
+    function isValidDate(d) {
+      return d && !isNaN(new Date(d).getTime());
+    }
+    // Función para verificar si un proyecto ya existe (excluyendo una fila opcional)
+    function projectExists(project, excludeRow = null) {
+      const tableBody = document.querySelector('#projectsTable tbody');
+      const dataRows = Array.from(tableBody.querySelectorAll('tr')).filter(r => r.querySelector('td') && r !== excludeRow);
+      for (const row of dataRows) {
+        const projectCellText = row.querySelector('td:nth-child(2) a') ? row.querySelector('td:nth-child(2) a').textContent.toUpperCase() : '';
+        if (projectCellText === project.toUpperCase()) {
+          return true;
+        }
+      }
+      return false;
+    }
+    // Función para ordenar y agrupar la tabla por mes y fecha (descendente, más reciente primero)
+    function sortTable() {
+      const tableBody = document.querySelector('#projectsTable tbody');
+      const dataRows = Array.from(tableBody.querySelectorAll('tr')).filter(row => row.querySelector('td'));
+      // Ordenar por fecha descendente
+      dataRows.sort((a, b) => {
+        const dateA = new Date(a.querySelector('td:nth-child(3)').textContent);
+        const dateB = new Date(b.querySelector('td:nth-child(3)').textContent);
+        return dateB - dateA;
+      });
+      // Limpiar la tabla
+      tableBody.innerHTML = '';
+      let currentMonth = null;
+      dataRows.forEach((row, index) => {
+        const dateStr = row.querySelector('td:nth-child(3)').textContent;
+        if (!isValidDate(dateStr)) return; // Saltar si fecha inválida
+        const date = new Date(dateStr);
+        const monthYear = date.toLocaleString('es-ES', { month: 'long', year: 'numeric' }).toUpperCase();
+        if (monthYear !== currentMonth) {
+          const headerRow = document.createElement('tr');
+          const headerCell = document.createElement('th');
+          headerCell.colSpan = 5;
+          headerCell.textContent = monthYear;
+          headerCell.className = 'month-header';
+          headerRow.appendChild(headerCell);
+          tableBody.appendChild(headerRow);
+          currentMonth = monthYear;
+        }
+        // Actualizar número consecutivo (general, ignorando headers)
+        row.querySelector('td:first-child').textContent = index + 1;
+        tableBody.appendChild(row);
+      });
+    }
+    // Función para guardar proyectos en localStorage
+    function saveProjects() {
+      const tableBody = document.querySelector('#projectsTable tbody');
+      const dataRows = Array.from(tableBody.querySelectorAll('tr')).filter(row => row.querySelector('td'));
+      const projects = dataRows.map(row => ({
+        project: row.querySelector('td:nth-child(2) a').textContent,
+        date: row.querySelector('td:nth-child(3)').textContent,
+        order: row.querySelector('td:nth-child(4)').textContent
+      }));
+      localStorage.setItem(`projects_${brandName}_${year}`, JSON.stringify(projects));
+    }
+    // Función para cargar proyectos desde localStorage
+    function loadProjects() {
+      const projects = JSON.parse(localStorage.getItem(`projects_${brandName}_${year}`) || '[]');
+      projects.forEach(item => {
+        addRowToTable(item.project, item.date, item.order, false); // No guardar al cargar
+      });
+      sortTable(); // Ordenar y agrupar después de cargar
+    }
+    // Función para agregar fila a la tabla
+    function addRowToTable(project, date, order, save = true) {
+      try {
+        const tableBody = document.querySelector('#projectsTable tbody');
+        const row = document.createElement('tr');
+        // Número (temporal, se actualizará en sortTable)
+        const numCell = document.createElement('td');
+        numCell.textContent = '';
+        row.appendChild(numCell);
+        // Proyecto (con link clickable)
+        const projectCell = document.createElement('td');
+        const link = document.createElement('a');
+        link.className = 'project-link';
+        link.href = `catalogo.html?brand=${encodeURIComponent(brandName)}&year=${encodeURIComponent(year)}&project=${encodeURIComponent(project)}`;
+        link.textContent = project.toUpperCase();
+        projectCell.appendChild(link);
+        row.appendChild(projectCell);
+        // Fecha
+        const dateCell = document.createElement('td');
+        dateCell.textContent = date;
+        row.appendChild(dateCell);
+        // Número de orden
+        const orderCell = document.createElement('td');
+        orderCell.textContent = order.toUpperCase() || '';
+        row.appendChild(orderCell);
+        // Acciones
+        const actionsCell = document.createElement('td');
+        actionsCell.className = 'actions-cell';
+        const editBtn = document.createElement('button');
+        editBtn.className = 'btn btn-warning btn-sm';
+        editBtn.textContent = 'EDITAR';
+        editBtn.onclick = () => editProject(row, projectCell, dateCell, orderCell);
+        actionsCell.appendChild(editBtn);
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn btn-danger btn-sm';
+        deleteBtn.textContent = 'ELIMINAR';
+        deleteBtn.onclick = () => {
+          if (confirm('¿Estás seguro de eliminar este proyecto?')) {
+            tableBody.removeChild(row);
+            sortTable(); // Reordenar después de eliminar
+            saveProjects(); // Guardar después de eliminar
+          }
+        };
+        actionsCell.appendChild(deleteBtn);
+        row.appendChild(actionsCell);
+        tableBody.appendChild(row);
+        if (save) {
+          sortTable(); // Ordenar y agrupar la tabla después de agregar
+          saveProjects(); // Guardar en localStorage
+        }
+      } catch (error) {
+        console.error('Error adding row to table:', error);
+        alert('Error al agregar el proyecto. Por favor, intenta de nuevo.');
+      }
+    }
+    // Función para editar proyecto
+    function editProject(row, projectCell, dateCell, orderCell) {
+      try {
+        const oldProject = projectCell.querySelector('a').textContent;
+        const newProject = prompt('Nuevo proyecto:', oldProject);
+        if (!newProject || newProject.trim() === '') {
+          alert('Por favor, ingresa un nombre de proyecto válido (no vacío).');
+          return;
+        }
+        if (newProject.toUpperCase() !== oldProject.toUpperCase() && projectExists(newProject, row)) {
+          alert('El proyecto ya existe. Por favor, usa un nombre diferente.');
+          return;
+        }
+        const link = document.createElement('a');
+        link.className = 'project-link';
+        link.href = `catalogo.html?brand=${encodeURIComponent(brandName)}&year=${encodeURIComponent(year)}&project=${encodeURIComponent(newProject)}`;
+        link.textContent = newProject.toUpperCase();
+        projectCell.innerHTML = '';
+        projectCell.appendChild(link);
+        const newDate = prompt('Nueva fecha (YYYY-MM-DD):', dateCell.textContent);
+        if (!isValidDate(newDate)) {
+          alert('Por favor, ingresa una fecha válida (YYYY-MM-DD).');
+          return;
+        }
+        dateCell.textContent = newDate;
+        const newOrder = prompt('Nuevo número de orden:', orderCell.textContent);
+        orderCell.textContent = newOrder ? newOrder.toUpperCase() : '';
+        sortTable(); // Reordenar después de editar
+        saveProjects(); // Guardar después de editar
+      } catch (error) {
+        console.error('Error editing project:', error);
+        alert('Error al editar el proyecto. Por favor, intenta de nuevo.');
+      }
+    }
+    // Manejar formulario de agregar
+    document.getElementById('addProjectForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      try {
+        const projectInput = document.getElementById('projectInput');
+        const dateInput = document.getElementById('dateInput');
+        const orderInput = document.getElementById('orderInput');
+        const project = projectInput.value.trim();
+        const date = dateInput.value;
+        const order = orderInput.value.trim();
+        if (project === '') {
+          alert('Por favor, ingresa un nombre de proyecto válido (no vacío).');
+          return;
+        }
+        if (!isValidDate(date)) {
+          alert('Por favor, ingresa una fecha válida.');
+          return;
+        }
+        if (projectExists(project)) {
+          alert('El proyecto ya existe. Por favor, usa un nombre diferente.');
+          return;
+        }
+        addRowToTable(project, date, order);
+        projectInput.value = '';
+        dateInput.value = '';
+        orderInput.value = '';
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('Error al agregar el proyecto. Por favor, intenta de nuevo.');
+      }
+    });
+    // Cargar proyectos al iniciar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProjects();
+    });
+  </script>
+</body>
+</html>

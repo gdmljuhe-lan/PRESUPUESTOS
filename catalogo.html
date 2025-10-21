@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>CATALOGO DE MOBILIARIO</title>
+  <!-- font awesome style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700|Roboto:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <!-- Custom CSS for table and form styling -->
+  <style>
+    body {
+      font-family: "Avenir Next LT Pro Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 12px; /* Updated default font size for the entire page */
+    }
+    #catalogTable {
+      max-width: 1200px; /* Set maximum table width */
+      width: 100%; /* Ensure responsiveness within max-width */
+      margin: 0 auto; /* Center the table */
+      border-collapse: collapse; /* Consistent cell boundaries */
+      table-layout: fixed; /* Prevent cells from expanding beyond table width */
+      font-family: "Avenir Next LT Pro Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px; /* Updated font size for table */
+    }
+    #catalogTable th,
+    #catalogTable td {
+      text-align: center;
+      text-transform: uppercase;
+      padding: 4px; /* Reduced padding for smaller cells proportional to 12px text */
+      vertical-align: middle; /* Ensure vertical alignment */
+      overflow: hidden; /* Prevent content overflow */
+      height: 48px; /* Fixed row height proportional to 12px text (4x font size for balance) */
+    }
+    #catalogTable th {
+      min-width: 60px; /* Reduced minimum width for headers proportional to text */
+    }
+    #catalogTable td {
+      min-width: 75px; /* Reduced minimum width for content cells proportional to text */
+    }
+    #catalogTable .btn {
+      text-transform: uppercase; /* Uppercase button text */
+      padding: 2px 4px; /* Adjusted padding for 8px font size */
+      font-size: 8px; /* Updated font size for action buttons */
+      line-height: 1.2; /* Adjust line height for better readability */
+    }
+    #catalogTable .actions-cell {
+      display: flex;
+      justify-content: center;
+      gap: 3px; /* Reduced space between buttons proportional to text */
+      align-items: center; /* Vertical centering */
+      min-width: 90px; /* Ensure enough space for buttons, reduced */
+    }
+    #catalogTable img {
+      max-width: 60px; /* Reduced image size proportional to text */
+      height: auto;
+    }
+    #catalogTable .catalog-link {
+      color: #000000; /* Set to black */
+      text-decoration: none;
+      cursor: pointer;
+      background: none; /* Prevent any background */
+      outline: none; /* Prevent outline */
+      border: none; /* Prevent border */
+      font-size: 14px; /* Updated font size for links */
+    }
+    #catalogTable .catalog-link:hover {
+      text-decoration: underline; /* Underline on hover */
+    }
+    #catalogTable .catalog-link:focus,
+    #catalogTable .catalog-link:active {
+      outline: none; /* Prevent focus outline */
+      box-shadow: none; /* Prevent focus shadow */
+    }
+    #catalogTable .catalog-image-link {
+      display: inline-block; /* Ensure image link is properly sized */
+      text-decoration: none;
+      background: none; /* Prevent any background */
+      outline: none; /* Prevent outline */
+      border: none; /* Prevent border */
+    }
+    #catalogTable .catalog-image-link img {
+      display: block; /* Ensure image behaves correctly */
+    }
+    #catalogTable .catalog-image-link:hover img {
+      opacity: 0.8; /* Slight opacity change on hover for visual feedback */
+    }
+    #catalogTable .catalog-image-link:focus,
+    #catalogTable .catalog-image-link:active {
+      outline: none; /* Prevent focus outline */
+      box-shadow: none; /* Prevent focus shadow */
+    }
+    /* Truncate description text */
+    #catalogTable .description-cell {
+      max-width: 70px; /* Updated width for description cell proportional to text */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; /* Prevent text wrapping */
+    }
+    #catalogTable .description-cell a {
+      display: inline-block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    /* Ensure clave text is continuous */
+    #catalogTable .clave-cell {
+      white-space: nowrap; /* Prevent text wrapping */
+      max-width: 75px; /* Limit clave cell width proportional to text */
+      overflow: hidden;
+      text-overflow: ellipsis; /* Truncate long clave text */
+    }
+    /* Form styling */
+    #addItemForm {
+      background-image: url('imágenes/fondoformulario.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 1200px; /* Increased max-width for better spacing */
+      margin: 0 auto 30px;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+      font-family: "Avenir Next LT Pro Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 12px; /* Updated font size for form */
+    }
+    #addItemForm h3 {
+      font-family: "Avenir Next LT Pro Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 12px; /* Updated font size for form title */
+    }
+    #addItemForm label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 12px; /* Updated font size for labels */
+    }
+    #addItemForm input[type="text"],
+    #addItemForm input[type="number"],
+    #addItemForm input[type="file"],
+    #addItemForm select,
+    #addItemForm textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      text-transform: uppercase;
+      font-family: "Avenir Next LT Pro Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 12px; /* Updated font size for inputs */
+    }
+    #addItemForm #descripcionInput {
+      width: 100%;
+      height: 25px; /* Reduced to 25% of original 100px */
+      min-height: 35px; /* Reduced to 25% of original 140px (75% less tall) */
+      resize: vertical;
+    }
+    #addItemForm #observacionesInput {
+      min-height: 80px;
+      resize: vertical;
+    }
+    #addItemForm .pu-input {
+      position: relative;
+    }
+    #addItemForm .pu-input::before {
+      content: '$';
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+      z-index: 1;
+      font-size: 12px; /* Updated font size for $ symbol */
+    }
+    #addItemForm .pu-input input[type="number"] {
+      padding-left: 25px;
+    }
+    #addItemForm .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    #addItemForm button {
+      background-color: #6c757d;
+      color: #fff;
+      border: none;
+      padding: 8px 12px; /* Adjusted padding for 12px font size */
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-transform: uppercase;
+      font-family: "Avenir Next LT Pro Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 12px; /* Updated font size for buttons */
+    }
+    #addItemForm button:hover {
+      background-color: #5a6268;
+    }
+    #addItemForm .row {
+      margin-bottom: 15px; /* Add space between rows to prevent overlap */
+    }
+    #addItemForm .col-md-3, #addItemForm .col-md-9 {
+      padding: 0 10px; /* Add horizontal padding to prevent overlapping */
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Ensure table responsiveness on small screens */
+    @media (max-width: 1200px) {
+      #catalogTable {
+        display: block;
+        overflow-x: auto; /* Enable horizontal scrolling on small screens */
+        white-space: nowrap; /* Prevent wrapping */
+      }
+      #addItemForm .col-md-3, #addItemForm .col-md-9 {
+        flex: 0 0 50%; /* Adjust to 2 columns on medium screens */
+        max-width: 50%;
+      }
+    }
+    @media (max-width: 768px) {
+      #addItemForm .col-md-3, #addItemForm .col-md-9 {
+        flex: 0 0 100%; /* Stack vertically on small screens */
+        max-width: 100%;
+      }
+    }
+    /* Style for the back button */
+    #backButton {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-transform: uppercase;
+      font-family: "Avenir Next LT Pro Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 12px;
+    }
+    #backButton:hover {
+      background-color: #0056b3;
+    }
+    /* Style for the scroll to top button */
+    #scrollToTop {
+      position: relative;
+      float: right;
+      margin-top: 20px;
+      background-color: #6c757d;
+      color: #fff;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-transform: uppercase;
+      font-family: "Avenir Next LT Pro Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 10px;
+    }
+    #scrollToTop:hover {
+      background-color: #5a6268;
+    }
+  </style>
+</head>
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section starts -->
+    <header class="header_section">
+      <div class="container">
+        <div class="top_contact-container">
+          <div class="tel_container">
+            <a href="">
+              PRESUPUESTOS MOBILIARIO
+            </a>
+          </div>
+          <div class="social-container">
+            <a href="">
+              <img src="images/fb.png" alt="Facebook" class="s-1" onerror="this.src='https://via.placeholder.com/30?text=FB'">
+            </a>
+            <a href="">
+              <img src="images/twitter.png" alt="Twitter" class="s-2" onerror="this.src='https://via.placeholder.com/30?text=TW'">
+            </a>
+            <a href="">
+              <img src="images/instagram.png" alt="Instagram" class="s-3" onerror="this.src='https://via.placeholder.com/30?text=IG'">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="iniciogdml.html">
+            <img src="images/logo.png" alt="Logo" onerror="this.src='https://via.placeholder.com/50?text=Logo'">
+            <span>
+              PRESUPUESTOS
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex flex-column flex-lg-row align-items-center w-100 justify-content-between">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="iniciogdml.html">INICIO <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="marcasgdml.html"> MARCAS </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="galeriagdml.html"> GALERIA </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="acumuladogdml.html"> ACUMULADO </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="news.html"> News </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact us</a>
+                </li>
+              </ul>
+              <form class="form-inline">
+                <input type="search" placeholder="Search">
+                <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+              <div class="login_btn-contanier ml-0 ml-lg-5">
+                <a href="">
+                  <img src="images/user.png" alt="User" onerror="this.src='https://via.placeholder.com/30?text=User'">
+                  <span>
+                    Login
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+  <!-- INICIA CATALOGO DE MOBILIARIO -->
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="custom_heading-container">
+        <h2>
+          CATALOGO DE MOBILIARIO
+        </h2>
+      </div>
+      <div class="detail-box">
+        <p>
+          AQUÍ PODRÁS ENCONTRAR EL CATALOGO DE MOBILIARIO PARA EL PROYECTO: <span id="projectName"></span> MARCA: <span id="brandName"></span> AÑO: <span id="yearName"></span>
+        </p>
+        <!-- Formulario para agregar/editar item -->
+        <div class="mb-4">
+          <h3>AGREGAR NUEVO ITEM</h3>
+          <form id="addItemForm">
+            <input type="hidden" id="editRowIndex" value="">
+            <div class="row">
+              <div class="col-md-4">
+                <label for="claveInput">CLAVE:</label>
+                <input type="text" class="form-control" id="claveInput" required>
+              </div>
+              <div class="col-md-4">
+                <label for="imagenInput">IMAGEN:</label>
+                <input type="file" class="form-control" id="imagenInput" accept="image/*">
+              </div>
+              <div class="col-md-4">
+                <label for="cantidadInput">CANTIDAD:</label>
+                <input type="number" class="form-control" id="cantidadInput" min="0" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label for="descripcionInput">DESCRIPCIÓN:</label>
+                <textarea class="form-control" id="descripcionInput" required></textarea>
+              </div>
+              <div class="col-md-4">
+                <label for="tipoInput">TIPO:</label>
+                <input type="text" class="form-control" id="tipoInput" list="tipoList" required>
+                <datalist id="tipoList">
+                  <option value="MOBILIARIO PERIMETRAL">
+                  <option value="MOBILIARIO CENTRAL">
+                  <option value="MOBILIARIO PROBADORES">
+                  <option value="MOBILIARIO BODEGA">
+                  <option value="MOBILIARIO CAJA">
+                  <option value="FACHADA">
+                  <option value="RACKS">
+                  <option value="CAJAS DE LUZ">
+                  <option value="LETREROS">
+                  <option value="HERRAJES">
+                  <option value="MOLDURAS">
+                  <option value="COLGADORES">
+                  <option value="GRAFICOS">
+                </datalist>
+              </div>
+              <div class="col-md-4">
+                <label for="unidadInput">UNIDAD:</label>
+                <input type="text" class="form-control" id="unidadInput" list="unidadList" required>
+                <datalist id="unidadList">
+                  <option value="PIEZA">
+                  <option value="JUEGO">
+                  <option value="PAR">
+                  <option value="M2">
+                  <option value="ML">
+                  <option value="METRO">
+                  <option value="KIT">
+                  <option value="LITRO">
+                  <option value="ROLLO">
+                  <option value="KILO">
+                  <option value="CIENTO">
+                </datalist>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label for="puInput">P.U.:</label>
+                <div class="pu-input">
+                  <input type="number" class="form-control" id="puInput" min="0" step="0.01" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label for="porcentajeInput">PORCENTAJE:</label>
+                <input type="number" class="form-control" id="porcentajeInput" step="0.01" required>
+              </div>
+              <div class="col-md-4">
+                <label for="observacionesInput">OBSERVACIONES:</label>
+                <textarea class="form-control" id="observacionesInput"></textarea>
+              </div>
+            </div>
+            <div class="button-group">
+              <button type="submit" class="btn btn-primary" id="formSubmitButton">AGREGAR MOBILIARIO</button>
+              <button type="button" class="btn btn-secondary" id="cancelCaptureButton">CANCELAR</button>
+              <button type="button" id="backButton">VOLVER</button>
+            </div>
+          </form>
+        </div>
+        <!-- Tabla de catalogo -->
+        <table class="table table-striped" id="catalogTable">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>CLAVE</th>
+              <th>IMAGEN</th>
+              <th>DESCRIPCIÓN</th>
+              <th>TIPO</th>
+              <th>UNIDAD</th>
+              <th>CANTIDAD</th>
+              <th>P.U.</th>
+              <th>OBSERVACIONES</th>
+              <th>ACCIONES</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filas se agregarán dinámicamente aquí -->
+          </tbody>
+        </table>
+        <div style="text-align: right;">
+          <button type="button" id="scrollToTop">IR ARRIBA</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- INFORMACION DE CONTACTO -->
+  <section class="info_section layout_padding2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_contact">
+            <h4>
+              ANALISTAS
+            </h4>
+            <div class="box">
+              <div class="img-box"></div>
+              <div class="detail-box">
+                <h6>
+                  ANALISTA 1
+                </h6>
+              </div>
+            </div>
+            <div class="box">
+              <div class="img-box"></div>
+              <div class="detail-box">
+                <h6>
+                  ANALISTA 2
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_menu">
+            <h4>
+              Menu
+            </h4>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="iniciogdml.html">INICIO <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="marcasgdml.html"> MARCAS </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="GALERIAGDML.html"> GALERIA </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="buy.html"> Online Buy </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info_news">
+            <h4>
+              PRESUPUESTOS MOBILIARIO
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- FIN DE SECCION INFO -->
+  <!-- SECCION PIE DE PAGINA -->
+    <section class="container-fluid footer_section">
+      <p>&copy; 2025 Design by <a href="https://INSTAGRAM.COM/GADMIEL__">gdml</a></p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        // Initialize OwlCarousel
+        try {
+          $(".owl-carousel").owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            navText: [],
+            autoplay: true,
+            responsive: {
+              0: { items: 1 },
+              600: { items: 2 },
+              1000: { items: 4 }
+            }
+          });
+        } catch (e) {
+          console.error("Error initializing OwlCarousel:", e);
+        }
+
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- JavaScript para manejar el catalogo de mobiliario -->
+  <script type="text/javascript">
+    // Obtener el nombre de la marca, año y proyecto desde la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const brandName = urlParams.get('brand') || 'Desconocida';
+    const year = urlParams.get('year') || 'Desconocido';
+    const project = urlParams.get('project') || 'Desconocido';
+    document.getElementById('brandName').textContent = brandName.toUpperCase();
+    document.getElementById('yearName').textContent = year.toUpperCase();
+    document.getElementById('projectName').textContent = project.toUpperCase();
+    let editingClave = null;
+    const storageKey = `catalog_${brandName}_${year}_${project}`;
+    // Función para formatear el precio unitario
+    function formatCurrency(amount) {
+      return `$${Number(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+    // Función para verificar si una clave ya existe (excluyendo una fila opcional)
+    function claveExists(clave, excludeClave = null) {
+      const items = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      return items.some(item => item.clave.toUpperCase() === clave.toUpperCase() && item.clave !== excludeClave);
+    }
+    // Función para convertir archivo a Base64
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+        reader.readAsDataURL(file);
+      });
+    }
+    // Función para agregar fila en la tabla (solo para build)
+    async function addRowToTable(clave, imagen, descripcion, tipo, unidad, cantidad, pu, porcentaje, observaciones, materials = []) {
+      try {
+        const tableBody = document.querySelector('#catalogTable tbody');
+        const row = document.createElement('tr');
+        row.classList.add('data-row');
+        // NO. (temporal, se actualizará en renumber)
+        const numCell = document.createElement('td');
+        numCell.textContent = '';
+        row.appendChild(numCell);
+        // Clave
+        const claveCell = document.createElement('td');
+        claveCell.className = 'clave-cell';
+        const claveLink = document.createElement('a');
+        claveLink.className = 'catalog-link';
+        claveLink.href = `analiticosgdml.html?brand=${encodeURIComponent(brandName)}&year=${encodeURIComponent(year)}&project=${encodeURIComponent(project)}&clave=${encodeURIComponent(clave)}`;
+        claveLink.textContent = clave.toUpperCase();
+        claveLink.title = clave.toUpperCase();
+        claveCell.appendChild(claveLink);
+        row.appendChild(claveCell);
+        // Imagen
+        const imagenCell = document.createElement('td');
+        const imagenLink = document.createElement('a');
+        imagenLink.className = 'catalog-image-link';
+        imagenLink.href = `analiticosgdml.html?brand=${encodeURIComponent(brandName)}&year=${encodeURIComponent(year)}&project=${encodeURIComponent(project)}&clave=${encodeURIComponent(clave)}`;
+        const img = document.createElement('img');
+        img.src = imagen;
+        img.alt = 'Imagen';
+        img.onerror = () => { img.src = 'https://via.placeholder.com/80?text=IMAGEN'; };
+        imagenLink.appendChild(img);
+        imagenCell.appendChild(imagenLink);
+        row.appendChild(imagenCell);
+        // Descripción
+        const descCell = document.createElement('td');
+        descCell.className = 'description-cell';
+        const descLink = document.createElement('a');
+        descLink.className = 'catalog-link';
+        descLink.href = `analiticosgdml.html?brand=${encodeURIComponent(brandName)}&year=${encodeURIComponent(year)}&project=${encodeURIComponent(project)}&clave=${encodeURIComponent(clave)}`;
+        descLink.textContent = descripcion.toUpperCase();
+        descLink.title = descripcion.toUpperCase();
+        descCell.appendChild(descLink);
+        row.appendChild(descCell);
+        // Tipo
+        const tipoCell = document.createElement('td');
+        tipoCell.textContent = (tipo || '').toUpperCase();
+        row.appendChild(tipoCell);
+        // Unidad
+        const unidadCell = document.createElement('td');
+        unidadCell.textContent = unidad.toUpperCase();
+        row.appendChild(unidadCell);
+        // Cantidad
+        const cantCell = document.createElement('td');
+        cantCell.textContent = cantidad;
+        row.appendChild(cantCell);
+        // P.U.
+        const puCell = document.createElement('td');
+        puCell.textContent = formatCurrency(pu);
+        puCell.dataset.porcentaje = porcentaje;
+        row.appendChild(puCell);
+        // Observaciones
+        const obsCell = document.createElement('td');
+        obsCell.textContent = observaciones.toUpperCase() || '';
+        row.appendChild(obsCell);
+        // Acciones
+        const actionsCell = document.createElement('td');
+        actionsCell.className = 'actions-cell';
+        const editBtn = document.createElement('button');
+        editBtn.className = 'btn btn-warning btn-sm';
+        editBtn.textContent = 'EDITAR';
+        editBtn.onclick = () => editItem(row);
+        actionsCell.appendChild(editBtn);
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn btn-danger btn-sm';
+        deleteBtn.textContent = 'ELIMINAR';
+        deleteBtn.onclick = () => deleteItem(row);
+        actionsCell.appendChild(deleteBtn);
+        row.appendChild(actionsCell);
+        // Store materials
+        row.dataset.materials = JSON.stringify(materials);
+        tableBody.appendChild(row);
+      } catch (error) {
+        console.error('Error adding row to table:', error);
+      }
+    }
+    // Función para construir la tabla con agrupación por tipo
+    async function buildTable() {
+      const items = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      items.sort((a, b) => (a.tipo || '').localeCompare(b.tipo || ''));
+      const tableBody = document.querySelector('#catalogTable tbody');
+      tableBody.innerHTML = '';
+      let currentType = '';
+      items.forEach(item => {
+        if (item.tipo && item.tipo.toUpperCase() !== currentType) {
+          const headerRow = document.createElement('tr');
+          headerRow.classList.add('type-header');
+          const headerCell = document.createElement('td');
+          headerCell.colSpan = 10;
+          headerCell.textContent = `TIPO: ${item.tipo.toUpperCase()}`;
+          headerCell.style.backgroundColor = '#e9ecef';
+          headerCell.style.fontWeight = 'bold';
+          headerCell.style.textAlign = 'left';
+          headerCell.style.padding = '10px';
+          headerRow.appendChild(headerCell);
+          tableBody.appendChild(headerRow);
+          currentType = item.tipo.toUpperCase();
+        }
+        addRowToTable(
+          item.clave,
+          item.imagen,
+          item.descripcion,
+          item.tipo || '',
+          item.unidad,
+          item.cantidad,
+          item.pu,
+          item.porcentaje,
+          item.observaciones,
+          item.materials || []
+        );
+      });
+      // Renumerar solo filas de datos
+      const dataRows = tableBody.querySelectorAll('tr:not(.type-header)');
+      dataRows.forEach((row, idx) => {
+        row.querySelector('td:first-child').textContent = idx + 1;
+      });
+    }
+    // Función para eliminar item
+    function deleteItem(row) {
+      if (confirm('¿Estás seguro de eliminar este item?')) {
+        const clave = row.querySelector('td:nth-child(2)').textContent;
+        let items = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        items = items.filter(item => item.clave.toUpperCase() !== clave.toUpperCase());
+        localStorage.setItem(storageKey, JSON.stringify(items));
+        buildTable();
+        resetForm();
+      }
+    }
+    // Función para resetear el formulario
+    function resetForm() {
+      const form = document.getElementById('addItemForm');
+      form.reset();
+      document.getElementById('editRowIndex').value = '';
+      document.getElementById('formSubmitButton').textContent = 'AGREGAR MOBILIARIO';
+      editingClave = null;
+    }
+    // Función para editar item
+    function editItem(row) {
+      try {
+        editingClave = row.querySelector('td:nth-child(2)').textContent;
+        const descripcion = row.querySelector('td:nth-child(4)').textContent;
+        const tipo = row.querySelector('td:nth-child(5)').textContent;
+        const unidad = row.querySelector('td:nth-child(6)').textContent;
+        const cantidad = row.querySelector('td:nth-child(7)').textContent;
+        const pu = row.querySelector('td:nth-child(8)').textContent.replace(/\$|,/g, '').trim();
+        const porcentaje = row.querySelector('td:nth-child(8)').dataset.porcentaje || '0';
+        const observaciones = row.querySelector('td:nth-child(9)').textContent;
+        // Rellenar formulario
+        document.getElementById('claveInput').value = editingClave;
+        document.getElementById('descripcionInput').value = descripcion;
+        document.getElementById('tipoInput').value = tipo;
+        document.getElementById('unidadInput').value = unidad;
+        document.getElementById('cantidadInput').value = cantidad;
+        document.getElementById('puInput').value = pu;
+        document.getElementById('porcentajeInput').value = porcentaje;
+        document.getElementById('observacionesInput').value = observaciones;
+        document.getElementById('editRowIndex').value = '1'; // Flag para edición
+        document.getElementById('formSubmitButton').textContent = 'ACTUALIZAR MOBILIARIO';
+      } catch (error) {
+        console.error('Error preparing edit:', error);
+        alert('Error al preparar la edición. Por favor, intenta de nuevo.');
+      }
+    }
+    // Manejar formulario de agregar/editar
+    document.getElementById('addItemForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      try {
+        const claveInput = document.getElementById('claveInput');
+        const imagenInput = document.getElementById('imagenInput');
+        const descripcionInput = document.getElementById('descripcionInput');
+        const tipoInput = document.getElementById('tipoInput');
+        const unidadInput = document.getElementById('unidadInput');
+        const cantidadInput = document.getElementById('cantidadInput');
+        const puInput = document.getElementById('puInput');
+        const porcentajeInput = document.getElementById('porcentajeInput');
+        const observacionesInput = document.getElementById('observacionesInput');
+        const editRowIndex = document.getElementById('editRowIndex').value;
+        const clave = claveInput.value.trim();
+        const imagenFile = imagenInput.files[0];
+        const descripcion = descripcionInput.value.trim();
+        const tipo = tipoInput.value.trim();
+        const unidad = unidadInput.value.trim();
+        const cantidad = parseInt(cantidadInput.value);
+        const pu = parseFloat(puInput.value);
+        const porcentaje = parseFloat(porcentajeInput.value);
+        const observaciones = observacionesInput.value.trim();
+        if (clave === '' || descripcion === '' || tipo === '' || unidad === '' || isNaN(cantidad) || isNaN(pu) || isNaN(porcentaje)) {
+          alert('Por favor, completa todos los campos requeridos con valores válidos.');
+          return;
+        }
+        const isEditing = editRowIndex !== '';
+        let oldRow = null;
+        let existingImagen = 'https://via.placeholder.com/80?text=IMAGEN';
+        let existingMaterials = [];
+        if (isEditing) {
+          oldRow = Array.from(document.querySelectorAll('tr.data-row')).find(r => r.querySelector('td:nth-child(2)').textContent.toUpperCase() === editingClave.toUpperCase());
+          if (oldRow) {
+            existingImagen = oldRow.querySelector('td:nth-child(3) img').src;
+            existingMaterials = JSON.parse(oldRow.dataset.materials || '[]');
+            oldRow.parentNode.removeChild(oldRow);
+          }
+        }
+        if (isEditing && claveExists(clave, editingClave)) {
+          alert('La clave ya existe. Por favor, usa una diferente.');
+          return;
+        }
+        if (!isEditing && claveExists(clave)) {
+          alert('La clave ya existe. Por favor, usa una diferente.');
+          return;
+        }
+        let finalImagen = imagenFile ? await fileToBase64(imagenFile) : existingImagen;
+        const newItem = {
+          clave,
+          imagen: finalImagen,
+          descripcion,
+          tipo,
+          unidad,
+          cantidad,
+          pu,
+          porcentaje,
+          observaciones,
+          materials: existingMaterials
+        };
+        let items = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        if (isEditing) {
+          const idx = items.findIndex(i => i.clave.toUpperCase() === editingClave.toUpperCase());
+          if (idx > -1) {
+            items[idx] = newItem;
+          }
+        } else {
+          items.push(newItem);
+        }
+        localStorage.setItem(storageKey, JSON.stringify(items));
+        buildTable();
+        resetForm();
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('Error al agregar o actualizar el item. Por favor, intenta de nuevo.');
+      }
+    });
+    // Manejar cancelar captura
+    document.getElementById('cancelCaptureButton').addEventListener('click', () => {
+      resetForm();
+    });
+    // Manejar botón volver
+    document.getElementById('backButton').addEventListener('click', () => {
+      window.location.href = `proyectos.html?project=${encodeURIComponent(project)}&brand=${encodeURIComponent(brandName)}&year=${encodeURIComponent(year)}`;
+    });
+    // Manejar botón ir arriba
+    document.getElementById('scrollToTop').addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    // Cargar items al iniciar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      buildTable();
+    });
+  </script>
+</body>
+</html>

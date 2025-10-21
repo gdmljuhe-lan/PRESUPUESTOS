@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>PRESUPUESTOS MOBILIARIO</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700|Roboto:400,700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
+  <style>
+    .list-group-item.replacing {
+        background-color: #fff3cd;
+        border-left: 5px solid #ffc107;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero_area">
+    <header class="header_section">
+      <div class="container">
+        <div class="top_contact-container">
+          <div class="tel_container">
+            <a href="">PRESUPUESTOS MOBILIARIO</a>
+          </div>
+          <div class="social-container">
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="iniciogdml.html">
+            <img src="images/logo.png" alt="">
+            <span>PRESUPUESTOS</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex flex-column flex-lg-row align-items-center w-100 justify-content-between">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="iniciogdml.html">INICIO <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="marcasgdml.html"> MARCAS </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="galeriagdml.html"> GALERIA </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="acumuladogdml.html"> ACUMULADO </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="comentariosgdml.html"> COMENTARIOS </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="analistasgdml.html">ANALISTAS</a>
+                </li>
+              </ul>
+              <form class="form-inline">
+                <input type="search" placeholder="Search">
+                <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+              <div class="login_btn-contanier ml-0 ml-lg-5">
+                <a href="">
+                  <img src="images/user.png" alt="">
+                  <span>Login</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="about_section layout_padding">
+      <div class="container">
+        <div class="custom_heading-container">
+          <h2>ACUMULADO</h2>
+        </div>
+        <div class="detail-box">
+          <p>AQUÍ PODRÁS CONSULTAR Y CARGAR EL ACUMULADO DE MATERIALES</p>
+          <form action="/upload-acumulado" method="post" enctype="multipart/form-data" class="mt-4 mb-4" id="fileUploadForm">
+            <div class="form-group d-flex align-items-center">
+              <input type="file" id="archivoAcumulado" name="acumulado_file" class="d-none" accept=".xlsx, .xlsm, .csv">
+              <button type="button" class="btn btn-primary mr-3" onclick="document.getElementById('archivoAcumulado').click()">
+                <i class="fa fa-folder-open"></i> Seleccionar Archivo
+              </button>
+              <span id="nombreArchivo" class="text-muted">Ningún archivo seleccionado.</span>
+              <button type="submit" class="btn btn-success ml-3" id="submitButton">
+                <i class="fa fa-upload"></i> Guardar en Lista
+              </button>
+            </div>
+          </form>
+          <div id="replacementIndicator" class="alert alert-warning d-none" role="alert">
+            **Modo Sustitución Activo:** Selecciona un nuevo archivo y presiona **GUARDAR EN LISTA** para reemplazar el elemento resaltado. <a href="#" onclick="cancelReplace(event)" class="alert-link">Cancelar Sustitución</a>
+          </div>
+          <div class="mt-5">
+            <h4>Archivos Guardados (Persistencia Local):</h4>
+            <div id="fileListContainer"></div>
+            <button type="button" class="btn btn-sm btn-danger mt-3" onclick="clearAllFiles()">
+              <i class="fa fa-trash"></i> Borrar Lista Local
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info_section layout_padding2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="info_contact">
+              <h4>ANALISTAS</h4>
+              <div class="box">
+                <div class="img-box"></div>
+                <div class="detail-box">
+                  <h6>ANALISTA 1</h6>
+                </div>
+              </div>
+              <div class="box">
+                <div class="img-box"></div>
+                <div class="detail-box">
+                  <h6>ANALISTA 2</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="info_menu">
+              <h4>Menu</h4>
+              <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="iniciogdml.html">INICIO</a></li>
+                <li class="nav-item"><a class="nav-link" href="marcasgdml.html">MARCAS</a></li>
+                <li class="nav-item"><a class="nav-link" href="galeriagdml.html">GALERIA</a></li>
+                <li class="nav-item"><a class="nav-link" href="acumuladogdml.html">ACUMULADO</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="info_news">
+              <h4>PRESUPUESTOS MOBILIARIO</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container-fluid footer_section">
+      <p>&copy; 2025 Design by <a href="https://INSTAGRAM.COM/GADMIEL__">gdml</a></p>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+          loop: true,
+          margin: 10,
+          nav: true,
+          navText: [],
+          autoplay: true,
+          responsive: {
+            0: { items: 1 },
+            600: { items: 2 },
+            1000: { items: 4 }
+          }
+        });
+      });
+
+      let fileToReplaceIndex = -1;
+      const nameSpan = document.getElementById('nombreArchivo');
+      const submitButton = document.getElementById('submitButton');
+      const fileInput = document.getElementById('archivoAcumulado');
+      const replacementIndicator = document.getElementById('replacementIndicator');
+      const METAL_DATA_KEY = 'acumuladoMetalData';
+      const MADERA_DATA_KEY = 'acumuladoMaderaData';
+      const MARMOL_DATA_KEY = 'acumuladoMarmolData';
+      const SUPERFICIE_SOLIDA_DATA_KEY = 'acumuladoSuperficieSolidaData';
+      const HERRAJE_DATA_KEY = 'acumuladoHerrajeData';
+      const ACRILICO_DATA_KEY = 'acumuladoAcrilicoData';
+
+      function readExcelAndSaveData(file, sheetName, storageKey, onComplete) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const worksheet = workbook.Sheets[sheetName];
+            if (!worksheet) {
+              alert(`Error: No se encontró la hoja llamada "${sheetName}" en el archivo.`);
+              onComplete(false);
+              return;
+            }
+            const range = XLSX.utils.decode_range(worksheet['!ref']);
+            range.s.r = 1;
+            const newRange = XLSX.utils.encode_range(range);
+            const json = XLSX.utils.sheet_to_json(worksheet, {
+              header: ["clave", "descripcion", "unidad", "d", "pu"],
+              range: newRange,
+              raw: false,
+              defval: ""
+            });
+            const sheetData = json.filter(row => row.descripcion && row.clave)
+              .map(row => ({
+                clave: String(row.clave).trim(),
+                descripcion: String(row.descripcion).trim(),
+                unidad: String(row.unidad).trim(),
+                "P.U. ($)": parseFloat(String(row.pu).replace(/[^0-9.-]+/g, '')) || 0
+              }));
+            localStorage.setItem(storageKey, JSON.stringify(sheetData));
+            alert(`✅ Datos de la hoja '${sheetName}' cargados exitosamente (${sheetData.length} elementos para autocompletado).`);
+            onComplete(true);
+          } catch (error) {
+            console.error("Error al procesar el archivo Excel:", error);
+            alert(`Error al procesar el archivo Excel. Asegúrate de que sea un formato compatible (.xlsx, .xlsm) y que la hoja '${sheetName}' exista.`);
+            onComplete(false);
+          }
+        };
+        reader.onerror = function() {
+          alert("Error al leer el archivo.");
+          onComplete(false);
+        };
+        reader.readAsArrayBuffer(file);
+      }
+
+      function getFileArray() {
+        const jsonString = localStorage.getItem('uploadedAcumuladoFiles');
+        return jsonString ? JSON.parse(jsonString) : [];
+      }
+
+      function saveFileArray(files) {
+        localStorage.setItem('uploadedAcumuladoFiles', JSON.stringify(files));
+      }
+
+      function deleteFile(index) {
+        if (!confirm('¿Estás seguro de que quieres eliminar este archivo de la lista local?')) {
+          return;
+        }
+        let files = getFileArray();
+        files.splice(index, 1);
+        saveFileArray(files);
+        if (files.length === 0) {
+          if (confirm('Al eliminar el último archivo, ¿desea borrar también la data de autocompletado de METAL, MADERA, MÁRMOL, SUPERFICIE SÓLIDA y HERRAJE?')) {
+            localStorage.removeItem(METAL_DATA_KEY);
+            localStorage.removeItem(MADERA_DATA_KEY);
+            localStorage.removeItem(MARMOL_DATA_KEY);
+            localStorage.removeItem(SUPERFICIE_SOLIDA_DATA_KEY);
+            localStorage.removeItem(HERRAJE_DATA_KEY);
+            localStorage.removeItem(ACRILICO_DATA_KEY);
+            alert("Data de autocompletado de METAL, MADERA, MÁRMOL, SUPERFICIE SÓLIDA, HERRAJE y ACRÍLICO eliminada.");
+          }
+        }
+        if (fileToReplaceIndex === index) {
+          cancelReplace(null);
+        } else if (fileToReplaceIndex > index) {
+          fileToReplaceIndex--;
+        }
+        renderFileList();
+      }
+
+      function prepareToReplace(index) {
+        fileToReplaceIndex = index;
+        nameSpan.textContent = '¡Listo para reemplazar! Selecciona el nuevo archivo.';
+        replacementIndicator.classList.remove('d-none');
+        submitButton.innerHTML = '<i class="fa fa-upload"></i> **REEMPLAZAR ARCHIVO**';
+        submitButton.classList.remove('btn-success');
+        submitButton.classList.add('btn-warning');
+        renderFileList();
+      }
+
+      function cancelReplace(event) {
+        if (event) event.preventDefault();
+        fileToReplaceIndex = -1;
+        nameSpan.textContent = 'Ningún archivo seleccionado.';
+        replacementIndicator.classList.add('d-none');
+        submitButton.innerHTML = '<i class="fa fa-upload"></i> Guardar en Lista';
+        submitButton.classList.remove('btn-warning');
+        submitButton.classList.add('btn-success');
+        renderFileList();
+      }
+
+      function clearAllFiles() {
+        if (!confirm('⚠️ ¿Estás seguro de que quieres borrar TODOS los archivos de la lista local? Esto también BORRARÁ los datos de MATERIALES (Metal, Madera, Mármol, Superficie Sólida, Herraje).')) {
+          return;
+        }
+        localStorage.removeItem('uploadedAcumuladoFiles');
+        localStorage.removeItem(METAL_DATA_KEY);
+        localStorage.removeItem(MADERA_DATA_KEY);
+        localStorage.removeItem(MARMOL_DATA_KEY);
+        localStorage.removeItem(SUPERFICIE_SOLIDA_DATA_KEY);
+        localStorage.removeItem(HERRAJE_DATA_KEY);
+        localStorage.removeItem(ACRILICO_DATA_KEY);
+        cancelReplace(null);
+        fileInput.value = '';
+        renderFileList();
+      }
+
+      function renderFileList() {
+        const files = getFileArray();
+        const container = document.getElementById('fileListContainer');
+        if (files.length === 0) {
+          container.innerHTML = '<p class="text-info">No hay archivos guardados localmente.</p>';
+        } else {
+          let html = '<ul class="list-group">';
+          files.forEach((file, index) => {
+            const isReplacing = index === fileToReplaceIndex ? 'replacing' : '';
+            html += `
+              <li class="list-group-item d-flex justify-content-between align-items-center ${isReplacing}">
+                <span class="text-truncate">${file.name}</span>
+                <div class="d-flex align-items-center">
+                  <span class="badge badge-secondary badge-pill mr-2">${file.date}</span>
+                  <button type="button" class="btn btn-sm btn-warning mr-2" onclick="prepareToReplace(${index})">
+                    <i class="fa fa-refresh"></i> Sustituir
+                  </button>
+                  <button type="button" class="btn btn-sm btn-danger" onclick="deleteFile(${index})">
+                    <i class="fa fa-trash"></i> Eliminar
+                  </button>
+                </div>
+              </li>`;
+          });
+          html += '</ul>';
+          container.innerHTML = html;
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        renderFileList();
+        fileInput.addEventListener('change', function() {
+          if (this.files.length > 0) {
+            nameSpan.textContent = 'Archivo seleccionado: ' + this.files[0].name;
+          } else {
+            nameSpan.textContent = 'Ningún archivo seleccionado.';
+          }
+        });
+
+        const form = document.getElementById('fileUploadForm');
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+          if (fileInput.files.length === 0) {
+            alert('Por favor, selecciona un archivo primero.');
+            return;
+          }
+          const file = fileInput.files[0];
+          readExcelAndSaveData(file, 'metal', METAL_DATA_KEY, (successMetal) => {
+            if (!successMetal) {
+              fileInput.value = '';
+              nameSpan.textContent = 'Ningún archivo seleccionado.';
+              return;
+            }
+            readExcelAndSaveData(file, 'madera', MADERA_DATA_KEY, (successMadera) => {
+              if (!successMadera) {
+                fileInput.value = '';
+                nameSpan.textContent = 'Ningún archivo seleccionado.';
+                return;
+              }
+              readExcelAndSaveData(file, 'marmol', MARMOL_DATA_KEY, (successMarmol) => {
+                if (!successMarmol) {
+                  fileInput.value = '';
+                  nameSpan.textContent = 'Ningún archivo seleccionado.';
+                  return;
+                }
+                readExcelAndSaveData(file, 'superficiesolida', SUPERFICIE_SOLIDA_DATA_KEY, (successSuperficieSolida) => {
+                  if (!successSuperficieSolida) {
+                    fileInput.value = '';
+                    nameSpan.textContent = 'Ningún archivo seleccionado.';
+                    return;
+                  }
+                  readExcelAndSaveData(file, 'herrajes', HERRAJE_DATA_KEY, (successHerrajes) => {
+                    if (!successHerrajes) {
+                      fileInput.value = '';
+                      nameSpan.textContent = 'Ningún archivo seleccionado.';
+                      return;
+                    }
+                    readExcelAndSaveData(file, 'acrilico', ACRILICO_DATA_KEY, (successAcrilico) => {
+                      if (!successAcrilico) {
+                        fileInput.value = '';
+                        nameSpan.textContent = 'Ningún archivo seleccionado.';
+                        return;
+                      }
+                      const fileName = file.name;
+                      let files = getFileArray();
+                      const now = new Date();
+                      const dateString = now.toLocaleDateString('es-ES', {
+                        day: '2-digit', month: '2-digit', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                      });
+                      if (fileToReplaceIndex !== -1) {
+                        if (fileToReplaceIndex >= 0 && fileToReplaceIndex < files.length) {
+                          files[fileToReplaceIndex] = { name: fileName, date: dateString };
+                          alert(`Archivo "${fileName}" ha **REEMPLAZADO** el elemento anterior.`);
+                        }
+                        cancelReplace(null);
+                      } else {
+                        files.push({ name: fileName, date: dateString });
+                        alert(`Archivo "${fileName}" agregado a la lista local.`);
+                      }
+                      saveFileArray(files);
+                      renderFileList();
+                      fileInput.value = '';
+                      nameSpan.textContent = 'Ningún archivo seleccionado.';
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    </script>
+</body>
+</html>

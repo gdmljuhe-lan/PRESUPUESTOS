@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>MARCAS</title>
+  <!-- font awesome style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700|Roboto:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <!-- Custom CSS for table styling -->
+  <style>
+    #brandsTable th,
+    #brandsTable td {
+      text-align: center;
+      text-transform: uppercase;
+      padding: 15px; /* Consistent padding for wider cells */
+      vertical-align: middle; /* Vertically center content */
+    }
+    #brandsTable th {
+      min-width: 120px; /* Minimum width for headers */
+    }
+    #brandsTable td {
+      min-width: 150px; /* Wider cells for content */
+    }
+    #brandsTable img {
+      display: block;
+      margin: 0 auto; /* Center the logo image horizontally */
+      max-height: 100px; /* Ensure logo fits within cell */
+    }
+    #brandsTable .btn {
+      text-transform: uppercase; /* Uppercase button text */
+    }
+    #brandsTable .actions-cell {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Vertically center buttons */
+      gap: 10px; /* Space between buttons */
+      height: 100%; /* Ensure full row height */
+    }
+    #brandsTable .brand-link {
+      color: #000000; /* Set to black */
+      text-decoration: none;
+      cursor: pointer;
+      background: none; /* Prevent any background */
+      outline: none; /* Prevent outline */
+      border: none; /* Prevent border */
+      display: inline-block; /* Ensure proper centering */
+      line-height: normal; /* Align text properly */
+    }
+    #brandsTable .brand-link:hover {
+      text-decoration: underline; /* Underline on hover */
+    }
+    #brandsTable .brand-link:focus,
+    #brandsTable .brand-link:active {
+      outline: none; /* Prevent focus outline */
+      box-shadow: none; /* Prevent focus shadow */
+    }
+  </style>
+</head>
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section starts -->
+    <header class="header_section">
+      <div class="container">
+        <div class="top_contact-container">
+          <div class="tel_container">
+            <a href="">
+              PRESUPUESTOS MOBILIARIO
+            </a>
+          </div>
+          <div class="social-container">
+            <a href="">
+
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="iniciogdml.html">
+            <img src="images/logo.png" alt="Logo" onerror="this.src='https://via.placeholder.com/50?text=Logo'">
+            <span>
+              PRESUPUESTOS
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex flex-column flex-lg-row align-items-center w-100 justify-content-between">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="iniciogdml.html">INICIO <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="marcasgdml.html"> MARCAS </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="galeriagdml.html"> GALERIA </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="acumuladogdml.html"> ACUMULADO </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="comentariosgdml.html"> COMENTARIOS </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="analistasgdml.html">ANALISTAS</a>
+                </li>
+              </ul>
+              <form class="form-inline">
+                <input type="search" placeholder="Search">
+                <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+              <div class="login_btn-contanier ml-0 ml-lg-5">
+                <a href="">
+                  <img src="images/user.png" alt="User" onerror="this.src='https://via.placeholder.com/30?text=User'">
+                  <span>
+                    Login
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+  <!-- INICIA LISTADO DE MARCAS -->
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="custom_heading-container">
+        <h2>
+          LISTADO DE MARCAS
+        </h2>
+      </div>
+      <div class="detail-box">
+        <p>
+          AQUI PODRAS ENCONTRAR EL LISTADO DE MARCAS.
+        </p>
+        <!-- Formulario para agregar nueva marca -->
+        <div class="mb-4">
+          <h4>AGREGAR NUEVA MARCA</h4>
+          <form id="addBrandForm">
+            <div class="form-group">
+              <label for="brandName">NOMBRE DE LA MARCA:</label>
+              <input type="text" class="form-control" id="brandName" required>
+            </div>
+            <div class="form-group">
+              <label for="brandLogo">SUBIR LOGO (IMAGEN):</label>
+              <input type="file" class="form-control-file" id="brandLogo" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary">AGREGAR</button>
+          </form>
+        </div>
+        <!-- Tabla de marcas -->
+        <table class="table table-striped" id="brandsTable">
+          <thead>
+            <tr>
+              <th>Número</th>
+              <th>Código de Marca</th>
+              <th>Marca</th>
+              <th>Logo</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filas se agregarán dinámicamente aquí -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <!-- INFORMACION DE CONTACTO -->
+  <section class="info_section layout_padding2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_contact">
+            <h4>
+              ANALISTAS
+            </h4>
+            <div class="box">
+              <div class="img-box"></div>
+              <div class="detail-box">
+                <h6>
+                  ANALISTA 1
+                </h6>
+              </div>
+            </div>
+            <div class="box">
+              <div class="img-box"></div>
+              <div class="detail-box">
+                <h6>
+                  ANALISTA 2
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_menu">
+            <h4>
+              Menu
+            </h4>
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="iniciogdml.html">INICIO <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="marcasgdml.html"> MARCAS </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="galeriagdml.html"> GALERIA </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="acumuladogdml.html"> ACUMULADO </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info_news">
+            <h4>
+              PRESUPUESTOS MOBILIARIO
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- FIN DE SECCION INFO -->
+  <!-- SECCION PIE DE PAGINA -->
+  <section class="container-fluid footer_section">
+    <p>
+      &copy; 2025 Design by
+      <a href="https://INSTAGRAM.COM/GADMIEL__">gdml</a>
+    </p>
+  </section>
+  <!-- SECCION FIN PIE DE PAGINA -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- JavaScript para manejar el listado de marcas -->
+  <script type="text/javascript">
+    // Inicializar contador para números y códigos (empezando en 10001)
+    let brandCounter = 1;
+    let codePrefix = 10000; // Para generar 10001, 10002, etc.
+    // Función para generar código de marca
+    function generateCode(name) {
+      try {
+        const words = name.toUpperCase().split(/\s+/);
+        let codeSuffix = '';
+        words.forEach(word => {
+          codeSuffix += word.substring(0, Math.min(4, word.length)).padEnd(4, 'X');
+        });
+        return (codePrefix + brandCounter) + codeSuffix;
+      } catch (error) {
+        console.error('Error generating code:', error);
+        return (codePrefix + brandCounter) + 'XXXX';
+      }
+    }
+    // Función para verificar si una marca ya existe
+    function brandExists(name) {
+      const tableBody = document.querySelector('#brandsTable tbody');
+      const rows = tableBody.querySelectorAll('tr');
+      for (const row of rows) {
+        const nameCell = row.querySelector('td:nth-child(3)').textContent.toUpperCase();
+        if (nameCell === name.toUpperCase()) {
+          return true;
+        }
+      }
+      return false;
+    }
+    // Función para ordenar la tabla alfabéticamente por nombre de marca
+    function sortTable() {
+      const tableBody = document.querySelector('#brandsTable tbody');
+      const rows = Array.from(tableBody.querySelectorAll('tr'));
+      rows.sort((a, b) => {
+        const nameA = a.querySelector('td:nth-child(3)').textContent.toUpperCase();
+        const nameB = b.querySelector('td:nth-child(3)').textContent.toUpperCase();
+        return nameA.localeCompare(nameB);
+      });
+      // Limpiar y reinsertar filas ordenadas
+      tableBody.innerHTML = '';
+      rows.forEach((row, index) => {
+        row.querySelector('td:first-child').textContent = index + 1; // Actualizar números
+        tableBody.appendChild(row);
+      });
+      brandCounter = rows.length + 1;
+    }
+    // Función para guardar marcas en localStorage
+    function saveBrands() {
+      const tableBody = document.querySelector('#brandsTable tbody');
+      const rows = tableBody.querySelectorAll('tr');
+      const brands = Array.from(rows).map(row => ({
+        name: row.querySelector('td:nth-child(3)').textContent,
+        logo: row.querySelector('td:nth-child(4) img').src
+      }));
+      localStorage.setItem('brands', JSON.stringify(brands));
+    }
+    // Función para cargar marcas desde localStorage
+    function loadBrands() {
+      const brands = JSON.parse(localStorage.getItem('brands') || '[]');
+      brands.forEach(brand => {
+        addRowToTable(brand.name, brand.logo, false); // No guardar al cargar
+      });
+      sortTable(); // Ordenar después de cargar
+    }
+    // Función para agregar fila a la tabla
+    function addRowToTable(name, logoDataUrl, save = true) {
+      try {
+        const tableBody = document.querySelector('#brandsTable tbody');
+        const row = document.createElement('tr');
+        // Número
+        const numCell = document.createElement('td');
+        numCell.textContent = brandCounter;
+        row.appendChild(numCell);
+        // Código
+        const codeCell = document.createElement('td');
+        codeCell.textContent = generateCode(name);
+        row.appendChild(codeCell);
+        // Marca
+        const nameCell = document.createElement('td');
+        const link = document.createElement('a');
+        link.className = 'brand-link';
+        link.href = `añosgdml.html?brand=${encodeURIComponent(name)}`;
+        link.textContent = name;
+        nameCell.appendChild(link);
+        row.appendChild(nameCell);
+        // Logo
+        const logoCell = document.createElement('td');
+        const img = document.createElement('img');
+        img.src = logoDataUrl;
+        img.alt = `Logo de ${name}`;
+        img.style.width = '100px'; // Tamaño ajustable
+        img.onerror = () => {
+          img.src = 'https://via.placeholder.com/100?text=Logo';
+        };
+        logoCell.appendChild(img);
+        row.appendChild(logoCell);
+        // Acciones
+        const actionsCell = document.createElement('td');
+        actionsCell.className = 'actions-cell'; // Clase para centrar botones
+        const editBtn = document.createElement('button');
+        editBtn.className = 'btn btn-warning btn-sm';
+        editBtn.textContent = 'Editar';
+        editBtn.onclick = () => editBrand(row, nameCell, logoCell);
+        actionsCell.appendChild(editBtn);
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn btn-danger btn-sm';
+        deleteBtn.textContent = 'Eliminar';
+        deleteBtn.onclick = () => {
+          if (confirm('¿Estás seguro de eliminar esta marca?')) {
+            tableBody.removeChild(row);
+            sortTable(); // Reordenar después de eliminar
+            saveBrands(); // Guardar después de eliminar
+          }
+        };
+        actionsCell.appendChild(deleteBtn);
+        row.appendChild(actionsCell);
+        tableBody.appendChild(row);
+        brandCounter++;
+        if (save) {
+          sortTable(); // Ordenar la tabla después de agregar
+          saveBrands(); // Guardar en localStorage
+        }
+      } catch (error) {
+        console.error('Error adding row to table:', error);
+        alert('Error al agregar la marca. Por favor, intenta de nuevo.');
+      }
+    }
+    // Función para editar marca
+    function editBrand(row, nameCell, logoCell) {
+      try {
+        const link = nameCell.querySelector('a');
+        const oldName = link.textContent;
+        const newName = prompt('Nuevo nombre de la marca:', oldName);
+        if (newName && newName.toUpperCase() !== oldName.toUpperCase() && brandExists(newName)) {
+          alert('La marca ya existe. Por favor, usa un nombre diferente.');
+          return;
+        }
+        if (newName) {
+          link.textContent = newName;
+          link.href = `añosgdml.html?brand=${encodeURIComponent(newName)}`;
+          // Actualizar código (generar nuevo basado en el nuevo nombre)
+          const codeCell = row.querySelector('td:nth-child(2)');
+          codeCell.textContent = generateCode(newName);
+        }
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+              logoCell.querySelector('img').src = event.target.result;
+              saveBrands(); // Guardar después de editar logo
+            };
+            reader.onerror = () => {
+              alert('Error al cargar la imagen.');
+            };
+            reader.readAsDataURL(file);
+          }
+        };
+        input.click();
+        if (newName) {
+          sortTable(); // Reordenar después de editar
+          saveBrands(); // Guardar después de editar nombre
+        }
+      } catch (error) {
+        console.error('Error editing brand:', error);
+        alert('Error al editar la marca. Por favor, intenta de nuevo.');
+      }
+    }
+    // Manejar formulario de agregar
+    document.getElementById('addBrandForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      try {
+        const name = document.getElementById('brandName').value.trim();
+        const logoInput = document.getElementById('brandLogo');
+        const file = logoInput.files[0];
+        if (brandExists(name)) {
+          alert('La marca ya existe. Por favor, usa un nombre diferente.');
+          return;
+        }
+        if (name && file) {
+          if (!file.type.startsWith('image/')) {
+            alert('Por favor, selecciona un archivo de imagen válido.');
+            return;
+          }
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            addRowToTable(name, event.target.result);
+            document.getElementById('addBrandForm').reset();
+          };
+          reader.onerror = () => {
+            alert('Error al cargar la imagen.');
+          };
+          reader.readAsDataURL(file);
+        } else {
+          alert('Por favor, completa todos los campos y selecciona una imagen.');
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('Error al agregar la marca. Por favor, intenta de nuevo.');
+      }
+    });
+    // Cargar marcas al iniciar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      loadBrands();
+    });
+  </script>
+</body>
+</html>
